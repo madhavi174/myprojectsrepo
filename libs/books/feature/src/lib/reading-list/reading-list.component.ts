@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getReadingList, removeFromReadingList } from '@tmo/books/data-access';
+import { addToReadingList, getReadingList, removeFromReadingList } from '@tmo/books/data-access';
 import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Inject } from '@nestjs/common';
 
@@ -15,6 +15,11 @@ export class ReadingListComponent {
   snackmessage: string = 'Your book has been removed from the reading list'
   // @Inject(MAT_SNACK_BAR_DATA) public data: any
   constructor(private readonly store: Store, private _snackBar: MatSnackBar) { }
+
+  //onclicking undo add to reading list should be called
+  addToReadingList(book) {
+    this.store.dispatch(addToReadingList({ book }));
+  }
 
   removeFromReadingList(item) {
     this.store.dispatch(removeFromReadingList({ item }));
