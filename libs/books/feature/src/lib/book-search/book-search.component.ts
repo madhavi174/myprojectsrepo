@@ -12,6 +12,8 @@ import { Book } from '@tmo/shared/models';
 import { Observable, pipe } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { BooksService } from 'libs/api/books/src/lib/books.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'tmo-book-search',
   templateUrl: './book-search.component.html',
@@ -19,6 +21,7 @@ import { BooksService } from 'libs/api/books/src/lib/books.service';
 })
 export class BookSearchComponent implements OnInit {
   books: ReadingListBook[];
+  message: string = 'Your book has been added to the reading list';
   //term = new FormControl();
   //options = [];
   //filteredOptions: Observable<Book[]>;
@@ -33,6 +36,7 @@ export class BookSearchComponent implements OnInit {
   constructor(
     private readonly store: Store,
     private readonly fb: FormBuilder,
+    private _snackBar: MatSnackBar
     //private service: BooksService
   ) {
     // this.filteredOptions = this.term.valueChanges.pipe(
@@ -69,6 +73,7 @@ export class BookSearchComponent implements OnInit {
 
   addBookToReadingList(book: Book) {
     this.store.dispatch(addToReadingList({ book }));
+    this._snackBar.open(this.message, '', { duration: 4000 });
   }
 
   searchExample() {
