@@ -6,7 +6,17 @@
       type="search"
       placeholder="Search for books to add to your reading list"
       formControlName="term"
+      [matAutocomplete]="autoGroup"
     />
+    <mat-autocomplete #autoGroup="matAutocomplete">
+      <!-- <mat-select>
+      <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option.title">
+    {{option.name}}
+ </mat-option>
+</mat-select> -->
+    </mat-autocomplete>
     <button mat-icon-button matSuffix>
       <mat-icon>search</mat-icon>
     </button>
@@ -45,6 +55,7 @@
     </div>
   </div>
 </ng-container>
+
 <ng-template #empty>
   <div class="empty">
     <p>

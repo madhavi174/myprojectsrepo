@@ -5,13 +5,12 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class BooksService {
-  constructor(private readonly http: HttpService) {}
+  constructor(private readonly http: HttpService) { }
 
   search(term: string): Observable<Book[]> {
     if (!term) {
-      throw new Error('Missing serach term');
+      throw new Error('Missing search term');
     }
-
     return this.http
       .get(`https://www.googleapis.com/books/v1/volumes?q=${term}`)
       .pipe(

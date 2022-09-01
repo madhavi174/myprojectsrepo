@@ -11,6 +11,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TotalCountComponent } from './total-count/total-count.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 const EXPORTS = [
   BookSearchComponent,
@@ -28,6 +30,8 @@ const EXPORTS = [
     MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatSelectModule,
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: BookSearchComponent }
     ]),
@@ -36,4 +40,4 @@ const EXPORTS = [
   exports: [...EXPORTS],
   declarations: [...EXPORTS]
 })
-export class BooksFeatureModule {}
+export class BooksFeatureModule { }
